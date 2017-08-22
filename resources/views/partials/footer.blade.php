@@ -1,1 +1,1 @@
-<footer class="blockquote-footer text-primary">Version <cite title="Source Title">{{Cache::get('version')}}</cite></footer>
+<footer class="blockquote-footer text-primary">Version <cite title="Source Title">{{ Cache::get('version') }}</cite></footer>
