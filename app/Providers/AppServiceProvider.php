@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Exception;
+use Illuminate\Support\Facades\Cache;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        try {
+            if ( !Cache::has('version') ) {
+              Cache::put('version', scandir('.git/refs/tags/', SCANDIR_SORT_DESCENDING)[0],30);
+            }
+        } catch (Exception $e) {
+            Cache::put('version', 'err code: 3');
+        };
     }
 
     /**

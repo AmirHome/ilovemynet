@@ -32,9 +32,9 @@
      style="display: none;">
     <i class="fa fa-arrow-up"></i>
 </div>
-@include('partials.javascripts')
-
-@yield('javascript')
 @include('partials.footer')
 
-
+@include('partials.javascripts')
+@yield('javascript')
+</body>
+</html>
