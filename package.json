@@ -17,5 +17,22 @@
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
     "vue": "^2.1.10"
-  }
+  },
+  "name": "mynetest",
+  "description": "<p align=\"center\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\"></p>",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/AmirHome/mynetest.git"
+  },
+  "keywords": [
+    "AmirHome"
+  ],
+  "author": "Amir Hosseinzadeh",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/AmirHome/mynetest#readme"
 }
