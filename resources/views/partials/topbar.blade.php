@@ -3,7 +3,7 @@
         <div class="page-header-inner">
             <div class="navbar-header">
                 <a href="{{ url('/') }}" class="navbar-brand">
-                    topbar-title
+                <i class="fa fa-home" aria-hidden="true"></i> Home Page
                 </a>
             </div>
             <a href="javascript:;"
