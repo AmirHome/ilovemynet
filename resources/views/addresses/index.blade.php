@@ -7,7 +7,7 @@
 @if ($addresses->count())
     <div class="portlet box green">
         <div class="portlet-title">
-            <div class="caption">List</div>
+            <div class="caption">List of <strong>{{$addresses[0]->persons->name}}</strong></div>
         </div>
         <div class="portlet-body">
             <table class="table table-striped table-hover table-responsive datatable" id="datatable">
