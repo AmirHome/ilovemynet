@@ -62,6 +62,8 @@
                     </form>
                 </div>
             </div>
+            <p> UserName: <span>amir.email@yahoo.com</span></p>
+            <p> Password: <span>123123</span></p>
         </div>
     </div>
 </div>
