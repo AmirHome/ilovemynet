@@ -17,4 +17,17 @@ Route::get('/', function () {
 
 
 Route::resource('persons','PersonsController');
-Route::resource('addresses','AddressesController');
+
+/*
+|--------------------------------------------------------------------------
+| Override Route Resource Addresses
+|--------------------------------------------------------------------------
+|
+| Route::resource('addresses','AddressesController');
+|
+*/
+Route::get('addresses/{personId}', ['as' => 'addresses.index', 'uses' => 'AddressesController@index']);
+
+Route::resource('addresses', 'AddressesController', ['names' => [
+    'index' => 'addresses/{personId}'
+]]);

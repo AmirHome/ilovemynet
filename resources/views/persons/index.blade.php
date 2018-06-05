@@ -29,7 +29,7 @@
 <td>{{ $row->gender }}</td>
 
                             <td>
-                                <a href="{{url('/addresses')}}">Addresses</a>
+                                {!! link_to_route('addresses.index', 'Addresses', array($row->id), array('class' => 'btn btn-xs btn-success')) !!}
 
                                 {!! link_to_route('persons.edit', 'Edit', array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
                                 {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('Are you sure?');",  'route' => array('persons.destroy', $row->id))) !!}

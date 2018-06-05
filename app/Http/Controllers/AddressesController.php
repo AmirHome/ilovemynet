@@ -22,9 +22,9 @@ class AddressesController extends Controller {
      *
      * @return \Illuminate\View\View
 	 */
-	public function index(Request $request)
+	public function index($personId)
     {
-        $addresses = Addresses::with('persons')->get();
+        $addresses = Addresses::with('persons')->where('persons_id',$personId)->get();
 
 		return view('addresses.index', compact('addresses'));
 	}
