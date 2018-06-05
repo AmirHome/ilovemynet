@@ -27,13 +27,20 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    MyNet Test
+                    MyNet Test by
                 </div>
 
-                <div class="links">
-                    <a href="{{url('/persons')}}">> Admin Panel</a>
-                </div>
+                <blockquote>Admin Panel Authentication</blockquote>
+                <blockquote>Laravel PHP Framework</blockquote>
+                <blockquote>Eloquent ORM</blockquote>
+                <blockquote>SQLite ver 3</blockquote>
+                <blockquote>Cache File</blockquote>
+                <blockquote>REST FULL</blockquote>
+                <blockquote>Bootstrap Front-end framework</blockquote>
+                <blockquote>GulpJs for minify css, js</blockquote>
+                <blockquote>Version Controle GitHub</blockquote>
             </div>
+
         </div>
     </body>
 </html>
