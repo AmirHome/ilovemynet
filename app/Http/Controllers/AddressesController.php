@@ -103,27 +103,11 @@ class AddressesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		Addresses::destroy($id);
+		$addresses = Addresses::findOrFail($id);
+		$personsId = $addresses->persons_id;
+		$addresses->delete();
 
-		return redirect()->route('addresses.index');
+		return redirect()->route('addresses.index',$personsId);
 	}
-
-    /**
-     * Mass delete function from index page
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function massDelete(Request $request)
-    {
-        if ($request->get('toDelete') != 'mass') {
-            $toDelete = json_decode($request->get('toDelete'));
-            Addresses::destroy($toDelete);
-        } else {
-            Addresses::whereNotNull('id')->delete();
-        }
-
-        return redirect()->route('addresses.index');
-    }
 
 }
