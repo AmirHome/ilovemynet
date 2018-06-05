@@ -25,22 +25,23 @@
                 </div>
             @endif
 
-            <div class="content">
+            <div class="contentx">
                 <div class="title m-b-md">
                     MyNet Test by
                 </div>
 
-                <blockquote>Admin Panel Authentication</blockquote>
-                <blockquote>Laravel PHP Framework</blockquote>
-                <blockquote>Eloquent ORM</blockquote>
-                <blockquote>SQLite ver 3</blockquote>
-                <blockquote>Cache File</blockquote>
-                <blockquote>REST FULL</blockquote>
-                <blockquote>Bootstrap Front-end framework</blockquote>
-                <blockquote>jQuery Front-end framework</blockquote>
-                <blockquote>DataTables plug-in</blockquote>
-                <blockquote>GulpJs for minify css, js</blockquote>
-                <blockquote>Version Controle GitHub</blockquote>
+                <blockquote> 1.   Admin Panel Authentication</blockquote>
+                <blockquote> 2.   Laravel PHP Framework</blockquote>
+                <blockquote> 3.   Eloquent ORM</blockquote>
+                <blockquote> 4.   SQLite ver 3</blockquote>
+                <blockquote> 5.   Cache File</blockquote>
+                <blockquote> 6.   REST FULL</blockquote>
+                <blockquote> 7.   Bootstrap Front-end framework</blockquote>
+                <blockquote> 8.   jQuery Front-end framework</blockquote>
+                <blockquote> 9.   DataTables plug-in</blockquote>
+                <blockquote>10.   GulpJs for minify css, js</blockquote>
+                <blockquote>11.   Version Controle GitHub</blockquote>
+                <blockquote>12.   Heroku Publish and Config</blockquote>
             </div>
 
         </div>
