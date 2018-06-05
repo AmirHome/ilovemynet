@@ -33,3 +33,4 @@ Route::resource('addresses', 'AddressesController', ['names' => [
     'index' => 'addresses/{personId}',
     'create' => 'addresses/create/{personId}'
 ]]);
+Auth::routes();
