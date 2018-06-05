@@ -25,7 +25,7 @@ class CreateAddressesRequest extends FormRequest {
 	{
 		return [
             'address' => 'required', 
-            'post_code' => 'required|unique:addresses,post_code,'.$this->addresses, 
+            'post_code' => 'required|unique_with:addresses,persons_id,'.$this->addresses, 
             'city_name' => 'required', 
             'country_name' => 'required', 
             'persons_id' => 'required', 

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<p>{!! link_to_route('addresses.create', 'Add New' , null, array('class' => 'btn btn-success')) !!}</p>
+<p>{!! link_to_route('addresses.create', 'Add New' , $personId, array('class' => 'btn btn-success')) !!}</p>
 
 @if ($addresses->count())
     <div class="portlet box green">

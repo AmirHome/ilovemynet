@@ -42,21 +42,16 @@
         {!! Form::text('country_name', old('country_name',$addresses->country_name), array('class'=>'form-control')) !!}
         
     </div>
-</div><div class="form-group">
-    {!! Form::label('persons_id', 'Person*', array('class'=>'col-sm-2 control-label')) !!}
-    <div class="col-sm-10">
-        {!! Form::select('persons_id', $persons, old('persons_id',$addresses->persons_id), array('class'=>'form-control')) !!}
-        
-    </div>
 </div>
 
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       {!! Form::submit('Update', array('class' => 'btn btn-primary')) !!}
-      {!! link_to_route('addresses.index', 'Cancel', null, array('class' => 'btn btn-default')) !!}
+      {!! link_to_route('addresses.index', 'Cancel', $addresses->persons_id, array('class' => 'btn btn-default')) !!}
     </div>
 </div>
 
+{!! Form::hidden('persons_id', $addresses->persons_id) !!}
 {!! Form::close() !!}
 
 @endsection

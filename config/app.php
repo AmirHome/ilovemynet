@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Felixkiss\UniqueWithValidator\ServiceProvider::class,
 
         /*
          * Application Service Providers...

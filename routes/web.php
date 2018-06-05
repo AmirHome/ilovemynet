@@ -27,7 +27,9 @@ Route::resource('persons','PersonsController');
 |
 */
 Route::get('addresses/{personId}', ['as' => 'addresses.index', 'uses' => 'AddressesController@index']);
+Route::get('addresses/create/{personId}', ['as' => 'addresses.create', 'uses' => 'AddressesController@create']);
 
 Route::resource('addresses', 'AddressesController', ['names' => [
-    'index' => 'addresses/{personId}'
+    'index' => 'addresses/{personId}',
+    'create' => 'addresses/create/{personId}'
 ]]);

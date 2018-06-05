@@ -21,11 +21,11 @@ class UpdateAddressesRequest extends FormRequest {
 	 *
 	 * @return array
 	 */
-	public function rules()
+	public function rules( \Illuminate\Http\Request $request)
 	{
 		return [
             'address' => 'required', 
-            'post_code' => 'required|unique:addresses,post_code,'.$this->addresses, 
+            'post_code' => 'required|unique_with:addresses,persons_id,'.$request->segment(2), 
             'city_name' => 'required', 
             'country_name' => 'required', 
             'persons_id' => 'required', 

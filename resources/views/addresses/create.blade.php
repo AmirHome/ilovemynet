@@ -42,12 +42,6 @@
         {!! Form::text('country_name', old('country_name'), array('class'=>'form-control')) !!}
         
     </div>
-</div><div class="form-group">
-    {!! Form::label('persons_id', 'Person*', array('class'=>'col-sm-2 control-label')) !!}
-    <div class="col-sm-10">
-        {!! Form::select('persons_id', $persons, old('persons_id'), array('class'=>'form-control')) !!}
-        
-    </div>
 </div>
 
 <div class="form-group">
@@ -56,6 +50,7 @@
     </div>
 </div>
 
+{!! Form::hidden('persons_id', $personId) !!}
 {!! Form::close() !!}
 
 @endsection

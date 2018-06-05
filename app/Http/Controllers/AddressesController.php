@@ -26,7 +26,7 @@ class AddressesController extends Controller {
     {
         $addresses = Addresses::with('persons')->where('persons_id',$personId)->get();
 
-		return view('addresses.index', compact('addresses'));
+		return view('addresses.index', compact('addresses', 'personId'));
 	}
 
 	/**
@@ -34,12 +34,12 @@ class AddressesController extends Controller {
 	 *
      * @return \Illuminate\View\View
 	 */
-	public function create()
+	public function create($personId)
 	{
 	    $persons = Persons::pluck('name', 'id')->prepend('Please select', 0);
 
 	    
-	    return view('addresses.create', compact('persons'));
+	    return view('addresses.create', compact('persons','personId'));
 	}
 
 	/**
@@ -50,9 +50,9 @@ class AddressesController extends Controller {
 	public function store(CreateAddressesRequest $request)
 	{
 	    
-		Addresses::create($request->all());
+		$ret = Addresses::create($request->all());
 
-		return redirect()->route('addresses.index');
+		return redirect()->route('addresses.index',$ret->persons_id);
 	}
 
 	/**
@@ -84,7 +84,7 @@ class AddressesController extends Controller {
 
 		$addresses->update($request->all());
 
-		return redirect()->route('addresses.index');
+		return redirect()->route('addresses.index',$addresses->persons_id);
 	}
 
 	/**
