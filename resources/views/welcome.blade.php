@@ -37,6 +37,8 @@
                 <blockquote>Cache File</blockquote>
                 <blockquote>REST FULL</blockquote>
                 <blockquote>Bootstrap Front-end framework</blockquote>
+                <blockquote>jQuery Front-end framework</blockquote>
+                <blockquote>DataTables plug-in</blockquote>
                 <blockquote>GulpJs for minify css, js</blockquote>
                 <blockquote>Version Controle GitHub</blockquote>
             </div>

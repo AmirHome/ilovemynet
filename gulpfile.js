@@ -1,16 +1,8 @@
 /*
- |--------------------------------------------------------------------------
- | Create by Amir Hosseinzadeh
- | www.AmirHome.com
- |--------------------------------------------------------------------------
- |
- */
- 
-/*
 $ npm install rimraf -g $ rimraf node_modules
 $ npm install gulp -g
 $ npm init
-$ npm install gulp gulp-useref gulp-if gulp-uglify gulp-cssnano del gulp-livereload gulp-clean gulp-replace gulp-htmlmin gulp-git gulp-util vinyl-ftp yargs fs gulp-run-sequence jsftp ftp --save-dev
+$ npm install gulp gulp-useref gulp-if gulp-uglify gulp-cssnano del gulp-livereload gulp-clean gulp-replace gulp-htmlmin gulp-git vinyl-ftp yargs fs run-sequence --save-dev
 */
 var gulp = require('gulp'),
     useref = require('gulp-useref'),
@@ -22,15 +14,13 @@ var gulp = require('gulp'),
     clean = require('gulp-clean'),
     replace = require('gulp-replace'),
     htmlmin = require('gulp-htmlmin'),
-    // fileCache = require('gulp-filter-cache'),
     git = require('gulp-git'), // git
-    gutil = require('gulp-util'), // log
+    //is deprecated gutil = require('gulp-util'), // log 
     ftp = require('vinyl-ftp'), // ftp
     aArgv = require('yargs'), // pass arguments
     fs = require('fs'), // load file
-    runSequence = require('gulp-run-sequence'), // tasks in order
-    jsFtp = require("jsftp"),
-    ftpClient = require('ftp');
+    runSequence = require('run-sequence') // tasks in order
+    ;
 // Paths variables
 var ftpignore = ['.bowerrc', '.env', '.env.example', '.gitattributes', '.gitignore', '.jshintrc', 'artisan', 'composer.json', 'composer.lock', 'gulpfile.js', 'package.json', 'phpunit.xml', 'README.md', 'node_modules/**', 'node_modules', '.git/**', '.git', 'storage/framework/views/**/*', 'storage/framework/cache/**/*', 'storage/framework/sessions/**/*', 'storage/debugbar/**/*', 'storage/logs/**/*', 'gulpBuild/**', 'gulpBuild'];
 var lastTag, logTag;
@@ -72,7 +62,7 @@ function getFtpConnection() {
         user: aUserName, // ftp username
         password: aPassword, // ftp password
         parallel: 7,
-        log: gutil.log,
+        //log: gutil.log,
         reload: true,
         // maxConnections:1,
     });
@@ -83,10 +73,14 @@ gulp.task('help', function() {
     console.log('   ftp-deploy\t\t Upload modified git with ftp');
     console.log('             \t\t Parameters:');
     console.log('             \t\t -d Domain -u username -p password [-f Full Transfer] \n\r');
+    console.log('             \t\t                                   [-t Tag use] \n\r');
+
     console.log('   mini-deploy\t\t Minify html, css, js and upload modified git with ftp');
     console.log('              \t\t Parameters:');
     console.log('              \t\t -d Domain -u username -p password [-f Full Transfer] \n\r');
+
     console.log('   create-version\t Create tag for this version git \n\r');
+    console.log('   build\t Minify and Copy in gulpBuild folder \n\r');
 });
 // Create Tag Version
 gulp.task('create-version', function() {
@@ -186,6 +180,11 @@ gulp.task('ftp-deploy', ['readLastTag'], function() {
                 // console.log(list); process.exit();
                 var conn_upload = getFtpConnection();
                 var remotePath = '/'; // the remote path on the server you want to upload to
+                // added and modified files
+                var changes = list.reduce(function(a, cur) {
+                    if (cur.type !== 'D' && cur.type.length) a.push(cur.path);
+                    return a || [];
+                }, []);
                 // deleted files
                 var deletes = list.reduce(function(a, cur) {
                     if (cur.type === 'D' && cur.type.length) a.push(cur.path);
@@ -194,14 +193,9 @@ gulp.task('ftp-deploy', ['readLastTag'], function() {
                 // delete removes files
                 deletes.map(function(d) {
                     conn_upload.delete(remotePath + d, function(err) {
-                        // if (err) throw err;
+                        //if (err) throw err;
                     });
                 });
-                // added and modified files
-                var changes = list.reduce(function(a, cur) {
-                    if (cur.type !== 'D' && cur.type.length) a.push(cur.path);
-                    return a || [];
-                }, []);
                 // upload added and modified files
                 gulp.src(changes, {
                     base: '.',
@@ -262,7 +256,7 @@ gulp.task('clean_min', ['useref'], function() {
     });
 });
 // Minify and Copy in gulpBuild folder 
-gulp.task('copy_gulpBuild', ['min'], function() {
+gulp.task('build', ['min'], function() {
     return gulp.src([__dirname + '/gulpBuild/**'], {
         dot: true
     }).pipe(gulp.dest(__dirname + '_min'));
@@ -296,7 +290,7 @@ gulp.task('watch', function() {
     // Create LiveReload server
     livereload.listen();
     // Watch any files in dist/, reload on change
-    gulp.watch(['resources/assets/**']).on('change', livereload.changed);
+    gulp.watch(['resources/assets/**', 'resources/vendors/**']).on('change', livereload.changed);
     // Watch .css , .js files
 });
 // htmlmin
