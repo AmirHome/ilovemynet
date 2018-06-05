@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Eloquent\Model;
 
-class CreatePersonTable extends Migration {
+class CreateAddressesTable extends Migration {
 
     /**
      * Run the migrations.
@@ -14,12 +14,13 @@ class CreatePersonTable extends Migration {
     public function up()
     {
         Model::unguard();
-        Schema::create('person',function(Blueprint $table){
+        Schema::create('addresses',function(Blueprint $table){
             $table->increments("id");
-            $table->string("name");
-            $table->date("birthday");
-            $table->enum("gender", ["male", "female", ]);
-            $table->integer("address_id")->references("id")->on("address");
+            $table->text("address");
+            $table->string("post_code");
+            $table->string("city_name");
+            $table->string("country_name");
+            $table->integer("persons_id")->references("id")->on("persons");
             $table->timestamps();
         });
     }
@@ -31,7 +32,7 @@ class CreatePersonTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('person');
+        Schema::drop('addresses');
     }
 
 }

@@ -3,37 +3,27 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
 use Carbon\Carbon; 
 
 
 
-class Person extends Model {
+class Persons extends Model {
 
     
-
-    
-
-    protected $table    = 'person';
+    protected $table    = 'persons';
     
     protected $fillable = [
           'name',
           'birthday',
-          'gender',
-          'address_id'
+          'gender'
     ];
     
-    public static $gender = ["male" => "male", "female" => "female", ];
-
-    
-    public function address()
-    {
-        return $this->hasOne('App\Address', 'id', 'address_id');
-    }
-
+    public static $gender = ['male' => 'male', 'female' => 'female'];
 
     
     /**
-     * Set attribute to date format
+     * Set attribute to datetime format
      * @param $input
      */
     public function setBirthdayAttribute($input)
@@ -46,7 +36,7 @@ class Person extends Model {
     }
 
     /**
-     * Get attribute from date format
+     * Get attribute from datetime format
      * @param $input
      *
      * @return string
@@ -61,5 +51,4 @@ class Person extends Model {
     }
 
 
-    
 }

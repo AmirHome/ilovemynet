@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{url('/person')}}">Person</a>
+                    <a href="{{url('/persons')}}">Person</a>
                 </div>
             </div>
         </div>

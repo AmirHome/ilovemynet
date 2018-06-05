@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePersonRequest extends FormRequest {
+class UpdateAddressesRequest extends FormRequest {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -24,13 +24,11 @@ class CreatePersonRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-            'name' => 'required', 
-            'birthday' => 'required', 
-            'gender' => 'required', 
             'address' => 'required', 
-            'post_code' => 'required', 
+            'post_code' => 'required|unique:addresses,post_code,'.$this->addresses, 
             'city_name' => 'required', 
             'country_name' => 'required', 
+            'persons_id' => 'required', 
             
 		];
 	}

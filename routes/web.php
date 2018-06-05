@@ -16,4 +16,5 @@ Route::get('/', function () {
 });
 
 
-Route::resource('person','PersonController');
+Route::resource('persons','PersonsController');
+Route::resource('addresses','AddressesController');

@@ -3,6 +3,8 @@
 <div class="clearfix"></div>
 <div class="page-container">
 
+    @include('partials.sidebar')
+
     <div class="page-content-wrapper">
         <div class="page-content">
 
