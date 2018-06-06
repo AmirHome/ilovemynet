@@ -33,7 +33,12 @@ class AddressesController extends Controller {
 	 */
 	public function index($personId)
     {
-        $addresses = Addresses::with('persons')->where('persons_id',$personId)->get();
+	    $addresses = \Cache::rememberForever('addresses', function ()  use($personId){
+
+            $addresses = Addresses::with('persons')->where('persons_id',$personId)->get();
+	        return $addresses;
+	    });    	
+        
 
 		return view('addresses.index', compact('addresses', 'personId'));
 	}
@@ -60,6 +65,7 @@ class AddressesController extends Controller {
 	{
 	    
 		$ret = Addresses::create($request->all());
+		\Cache::forget('addresses');
 
 		return redirect()->route('addresses.index',$ret->persons_id);
 	}
@@ -89,9 +95,9 @@ class AddressesController extends Controller {
 	{
 		$addresses = Addresses::findOrFail($id);
 
-        
-
 		$addresses->update($request->all());
+        
+	    \Cache::forget('addresses');
 
 		return redirect()->route('addresses.index',$addresses->persons_id);
 	}
@@ -107,6 +113,8 @@ class AddressesController extends Controller {
 		$personsId = $addresses->persons_id;
 		$addresses->delete();
 
+		\Cache::forget('addresses');
+		
 		return redirect()->route('addresses.index',$personsId);
 	}
 

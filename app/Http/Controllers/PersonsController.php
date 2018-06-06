@@ -32,8 +32,11 @@ class PersonsController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $persons = Persons::all();
+	    $persons = \Cache::rememberForever('persons', function (){
 
+            $persons = Persons::all();
+	        return $persons;
+	    });  
 		return view('persons.index', compact('persons'));
 	}
 
@@ -60,6 +63,8 @@ class PersonsController extends Controller {
 	{
 	    
 		Persons::create($request->all());
+
+		\Cache::forget('persons');
 
 		return redirect()->route('persons.index');
 	}
@@ -90,9 +95,9 @@ class PersonsController extends Controller {
 	{
 		$persons = Persons::findOrFail($id);
 
-        
-
 		$persons->update($request->all());
+        
+		\Cache::forget('persons');
 
 		return redirect()->route('persons.index');
 	}
@@ -106,25 +111,10 @@ class PersonsController extends Controller {
 	{
 		Persons::destroy($id);
 
+		\Cache::forget('persons');
+
 		return redirect()->route('persons.index');
 	}
 
-    /**
-     * Mass delete function from index page
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function massDelete(Request $request)
-    {
-        if ($request->get('toDelete') != 'mass') {
-            $toDelete = json_decode($request->get('toDelete'));
-            Persons::destroy($toDelete);
-        } else {
-            Persons::whereNotNull('id')->delete();
-        }
-
-        return redirect()->route('persons.index');
-    }
 
 }

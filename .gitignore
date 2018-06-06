@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 
+/gulpBuild
 /.idea
 /.vagrant
 Homestead.json
